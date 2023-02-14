@@ -1,14 +1,11 @@
-use opencv::{imgcodecs::{imread, IMREAD_COLOR}, highgui::{imshow, wait_key, destroy_all_windows}};
+mod image_padding;
+mod image_read_show;
+mod image_threshhold;
+mod video_read_process;
 
 fn main() {
-    let mat = imread("image.jpg", IMREAD_COLOR).unwrap();
-    println!("{:?}", mat);
-
-    // 图像的显示
-    imshow("Bibop", &mat).unwrap();
-
-    // 等待时间，毫秒级，0表示任意时间终止
-    wait_key(0).unwrap();
-
-    destroy_all_windows().unwrap();
+    // video_read_process::video_read_process();
+    // image_read_show::image_read_show();
+    // image_padding::image_padding();
+    image_threshhold::image_threshhold();
 }
