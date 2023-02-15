@@ -20,7 +20,7 @@ pub fn image_threshhold() {
     // THRESH_BINARY_INV: THRESH_BINARY反转
     // THRESH_TRUNC: 大于阈值部分设为阈值，否则不变
     // THRESH_TRUNC_INV: THRESH_TRUNC反转
-    threshold(&mat, &mut dst, 127., 255., THRESH_TRUNC).unwrap();
+    threshold(&mat, &mut dst, 127., 255., THRESH_BINARY).unwrap();
 
     imshow("Image Threshhold", &dst).unwrap();
 
