@@ -1,11 +1,11 @@
 use opencv::{
-    core::{Rect, Size, CV_8UC3},
+    core::{Rect, Size, CV_8UC1, CV_8UC3},
     highgui::{destroy_all_windows, imshow, wait_key},
     imgproc::{resize, INTER_LINEAR},
     prelude::*,
 };
 
-pub fn imshow_many(title: &str, mats: &[&Mat]) {
+pub fn imshow_many(title: &str, mats: &[&Mat], grayscale: bool) {
     let mut display_mat = Mat::default();
 
     let n_img = mats.len();
@@ -50,9 +50,10 @@ pub fn imshow_many(title: &str, mats: &[&Mat]) {
             size = 200;
         }
     }
+    let depth = if grayscale { CV_8UC1 } else { CV_8UC3 };
     unsafe {
         display_mat
-            .create_size(Size::new(100 + size * w, 30 + size * h), CV_8UC3)
+            .create_size(Size::new(100 + size * w, 30 + size * h), depth)
             .unwrap();
     }
 

@@ -81,6 +81,7 @@ pub fn image_gradient_operation() {
             &mat_dilate,
             &mat_dilate_gradient,
         ],
+        false
     );
     wait_key(0).unwrap();
     destroy_all_windows().unwrap();

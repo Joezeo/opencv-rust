@@ -1,3 +1,4 @@
+mod image_canny;
 mod image_edge_extraction;
 mod image_erode_dilate;
 mod image_filter;
@@ -5,6 +6,7 @@ mod image_gradient_operation;
 mod image_padding;
 mod image_read_show;
 mod image_open_close_operation;
+mod image_scharr_laplacian;
 mod image_sobel;
 mod image_threshhold;
 mod image_top_black_hat;
@@ -21,6 +23,8 @@ fn main() {
     // image_open_close_operation::image_open_close_operation();
     // image_gradient_operation::image_gradient_operation();
     // image_top_black_hat::image_top_black_hat();
+    // image_edge_extraction::image_edge_extraction();
     // image_sobel::image_sobel();
-    image_edge_extraction::image_edge_extraction();
+    // image_scharr_laplacian::image_scharr_laplacian();
+    image_canny::image_canny();
 }

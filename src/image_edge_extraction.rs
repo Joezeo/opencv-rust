@@ -13,11 +13,11 @@ use opencv::{
 };
 
 pub fn image_edge_extraction() {
-    let mat = imread("young.jpg", IMREAD_COLOR).unwrap();
-    let mat = image_gaussian_filter(&mat);
+    let src = imread("young.jpg", IMREAD_COLOR).unwrap();
+    let src = image_gaussian_filter(&src);
 
-    // let mut mat = Mat::default();
-    // cvt_color(&src, &mut mat, COLOR_BGR2GRAY, 0).unwrap();
+    let mut mat = Mat::default();
+    cvt_color(&src, &mut mat, COLOR_BGR2GRAY, 0).unwrap();
 
     // Sobel x
     let mut mat_sobelx = Mat::default();
@@ -68,7 +68,7 @@ pub fn image_edge_extraction() {
     )
     .unwrap();
 
-    imshow_many("Sobel", &[&mat, &sobeled]);
+    imshow_many("Sobel", &[&mat, &sobeled], true);
 }
 
 fn image_gaussian_filter(src: &Mat) -> Mat {

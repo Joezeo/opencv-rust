@@ -64,5 +64,5 @@ pub fn image_sobel() {
     )
     .unwrap();
 
-    imshow_many("Sobel", &[&mat_sobelx_abs, &mat_sobely_abs, &sobeled, &mat]);
+    imshow_many("Sobel", &[&mat_sobelx_abs, &mat_sobely_abs, &sobeled, &mat], false);
 }

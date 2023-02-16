@@ -43,5 +43,5 @@ pub fn image_top_black_hat() {
         morphology_default_border_value().unwrap(),
     ).unwrap();
 
-    imshow_many("Top Black hat", &[&mat, &top_hat, &black_hat])
+    imshow_many("Top Black hat", &[&mat, &top_hat, &black_hat], false)
 }
