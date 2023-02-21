@@ -16,6 +16,8 @@ pub fn image_canny() {
     canny(&src, &mut c1, 80., 150., 3, false).unwrap();
     let mut c2 = Mat::default();
     canny(&src, &mut c2, 50., 100., 3, false).unwrap();
+    let mut c3 = Mat::default();
+    canny(&src, &mut c3, 0., 200., 3, false).unwrap();
 
-    imshow_many("Canny", &[&src, &c1, &c2], true)
+    imshow_many("Canny", &[&src, &c1, &c2, &c3], true)
 }
