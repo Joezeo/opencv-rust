@@ -2,13 +2,13 @@
 #![allow(dead_code)]
 use opencv::{
     core::{no_array, Point, Scalar, CV_8UC1, subtract},
-    imgcodecs::{imread, IMREAD_GRAYSCALE},
+    imgcodecs::{imread, IMREAD_GRAYSCALE, IMREAD_COLOR},
     imgproc::{
         draw_contours, find_contours, threshold, CHAIN_APPROX_NONE, INTER_MAX, LINE_8, RETR_TREE,
         THRESH_BINARY,
     },
     prelude::*,
-    types::VectorOfVectorOfPoint, highgui::imshow,
+    types::VectorOfVectorOfPoint, highgui::{imshow, wait_key, destroy_all_windows},
 };
 
 use crate::opencv_util::imshow_many;
@@ -57,5 +57,7 @@ pub fn image_contours() {
     subtract(&ct, &mat, &mut sub, &no_array(), -1).unwrap();
 
     imshow("Con", &ct).unwrap();
-    imshow_many("Contours", &[&mat, &ct], true)
+    // imshow_many("Contours", &[&mat, &ct], true)
+    wait_key(0).unwrap();
+    destroy_all_windows().unwrap();
 }
