@@ -1,2 +1,2 @@
 # opencv-rust
-Some demo of OpenCV rust binding.
+Some demos of OpenCV rust binding.
