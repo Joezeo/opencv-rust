@@ -5,7 +5,7 @@ use opencv::{
     imgcodecs::{imread, IMREAD_GRAYSCALE, IMREAD_COLOR},
     imgproc::{
         draw_contours, find_contours, threshold, CHAIN_APPROX_NONE, INTER_MAX, LINE_8, RETR_TREE,
-        THRESH_BINARY,
+        THRESH_BINARY, cvt_color, COLOR_GRAY2BGR, contour_area, arc_length,
     },
     prelude::*,
     types::VectorOfVectorOfPoint, highgui::{imshow, wait_key, destroy_all_windows},
@@ -40,12 +40,16 @@ pub fn image_contours() {
 
     let mut ct = Mat::default();
     mat.copy_to(&mut ct).unwrap();
+
+    let mut ctc = Mat::default();
+    cvt_color(&ct, &mut ctc, COLOR_GRAY2BGR, 0).unwrap();
+
     draw_contours(
-        &mut ct,
+        &mut ctc,
         &contours,
-        0,
-        Scalar::new(0., 0., 255., 255.),
         -1,
+        Scalar::new(0., 0., 255., 255.),
+        2,
         LINE_8,
         &no_array(),
         INTER_MAX,
@@ -53,11 +57,17 @@ pub fn image_contours() {
     )
     .unwrap();
 
-    let mut sub = Mat::default();
-    subtract(&ct, &mat, &mut sub, &no_array(), -1).unwrap();
+    let mut mat_color = Mat::default();
+    cvt_color(&mat, &mut mat_color, COLOR_GRAY2BGR, 0).unwrap();
 
-    imshow("Con", &ct).unwrap();
-    // imshow_many("Contours", &[&mat, &ct], true)
-    wait_key(0).unwrap();
-    destroy_all_windows().unwrap();
+    let mut sub = Mat::default();
+    subtract(&ctc, &mat_color, &mut sub, &no_array(), -1).unwrap();
+
+    for (idx, cts) in contours.iter().enumerate() {
+        let area = contour_area(&cts, false).unwrap();
+        let length = arc_length(&cts, true).unwrap();
+        println!("[{}] area: {}, length: {}", idx, area, length);
+    }
+
+    imshow_many("Contours", &[&ctc, &mat_color, &sub], false);
 }

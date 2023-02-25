@@ -1,5 +1,6 @@
 mod image_canny;
 mod image_contours;
+mod image_contours_approx;
 mod image_edge_extraction;
 mod image_erode_dilate;
 mod image_filter;
@@ -30,5 +31,6 @@ fn main() {
     // image_scharr_laplacian::image_scharr_laplacian();
     // image_canny::image_canny();
     // image_pyr_up_down::image_pyr_up_down();
-    image_contours::image_contours();
+    // image_contours::image_contours();
+    image_contours_approx::image_contours_approx();
 }
